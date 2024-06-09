@@ -54,3 +54,12 @@ if uploaded_psd_file is not None:
         except requests.exceptions.RequestException as e:
             st.error(f"Request failed: {e}")
             st.text(str(e))  # Log the actual error for debugging
+            
+            # Additional debug information
+            st.text(f"API URL: {api_url}")
+            try:
+                # Try a simple GET request to see if the server is reachable
+                test_response = requests.get(api_url)
+                st.text(f"Test connection response status code: {test_response.status_code}")
+            except requests.exceptions.RequestException as test_e:
+                st.text(f"Test connection failed: {test_e}")
